@@ -5,10 +5,12 @@
 # ServerSSH: https://serverssh.net/?q=create-ssh&filter=29
 #SERVER_DOMAIN=ge.serverssh.net
 #SERVER_PORT=888
+#BADVPN_UDPGW_PORT=7200
 
 # JagoanSSH: https://www.jagoanssh.com/?do=create-account&filter=215
 SERVER_DOMAIN=ge.ipservers.xyz
 SERVER_PORT=888
+BADVPN_UDPGW_PORT=7200
 
 
 # the credentials for the ssh server

@@ -2,32 +2,35 @@
 
 # go in directory of script
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-cd $SCRIPT_DIR
+cd "$SCRIPT_DIR" || exit
 
 if [ ! -f "config.sh" ]; then
     cp default_config.sh config.sh
 fi
 
 # read config
-source config.sh
+# shellcheck source=/dev/null
+. config.sh
 
 
 # will get extracted out of route command later
 GATEWAY=
 
 # decode passwords
-PROXY_PASS=$(echo $PROXY_PASS | base64 --decode)
-SERVER_PASS=$(echo $SERVER_PASS | base64 --decode)
+PROXY_PASS=$(echo "$PROXY_PASS" | base64 --decode)
+SERVER_PASS=$(echo "$SERVER_PASS" | base64 --decode)
+
+echo "$SERVER_PASS"
 
 # undo all changes this script did
 cleanup() {
     # param to tell if the badvpn service should also get stopped
-    local stopBadvpn="${1:-true}";
+    _stopBadvpn="${1:-true}";
 
     echo -e "\nCleanup...";
 
     # kill the processes
-    if [ "$stopBadvpn" = "true" ];
+    if [ "$_stopBadvpn" = "true" ];
     then
         pkill -x badvpn-tun2sock;
     fi;
@@ -54,7 +57,7 @@ ifconfig tun0 10.20.0.1 netmask 255.255.255.0
 
 # use badvpn to route the traffic coming from the SOCKS Proxy, OpenSSH will start to the tun0 device
 # badvpn will also make sure, that UDP packets will get sent through the SSH tunnel
-(/root/badvpn-tun2socks --tundev tun0 --netif-ipaddr 10.20.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:1080 --udpgw-remote-server-addr 127.0.0.1:7000 &) > /root/badvpn.log
+(./badvpn-tun2socks --tundev tun0 --netif-ipaddr 10.20.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:1080 --udpgw-remote-server-addr 127.0.0.1:$BADVPN_UDPGW_PORT &) > /root/badvpn.log
 sleep 1
 
 # this part of the code is in a loop to allow automatic reconnects when the internet connection drops for whatever reason
@@ -68,7 +71,7 @@ do
     PROXY_CHECK=$?
 
     # get the gateway from the route command
-    GATEWAY=$(route -n | grep 'UG.*600[ \t]' | awk '{print $2}')
+    GATEWAY=$(route -n | grep 'UG[ \t]' | awk '{print $2}')
     # make all traffic to the ssh server pass through the detected gateway
     route add $SERVER_DOMAIN gw $GATEWAY metric 5
     # the remaining traffic will go through the badvpn gateway and therefore through the ssh tunnel
