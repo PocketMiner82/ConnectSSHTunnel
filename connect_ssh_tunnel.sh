@@ -6,6 +6,8 @@ cd "$SCRIPT_DIR" || exit
 
 if [ ! -f "config.sh" ]; then
     cp default_config.sh config.sh
+    echo "Copied config file. Please edit it, then re-run this script."
+    exit
 fi
 
 # read config
