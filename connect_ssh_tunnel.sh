@@ -20,8 +20,6 @@ GATEWAY=
 PROXY_PASS=$(echo "$PROXY_PASS" | base64 --decode)
 SERVER_PASS=$(echo "$SERVER_PASS" | base64 --decode)
 
-echo "$SERVER_PASS"
-
 # undo all changes this script did
 cleanup() {
     # param to tell if the badvpn service should also get stopped
@@ -57,7 +55,7 @@ ifconfig tun0 10.20.0.1 netmask 255.255.255.0
 
 # use badvpn to route the traffic coming from the SOCKS Proxy, OpenSSH will start to the tun0 device
 # badvpn will also make sure, that UDP packets will get sent through the SSH tunnel
-(./badvpn-tun2socks --tundev tun0 --netif-ipaddr 10.20.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:1080 --udpgw-remote-server-addr 127.0.0.1:$BADVPN_UDPGW_PORT &) > /root/badvpn.log
+(./badvpn-tun2socks --tundev tun0 --netif-ipaddr 10.20.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:1080 --udpgw-remote-server-addr 127.0.0.1:$BADVPN_UDPGW_PORT &) > /dev/null
 sleep 1
 
 # this part of the code is in a loop to allow automatic reconnects when the internet connection drops for whatever reason
