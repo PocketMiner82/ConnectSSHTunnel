@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# go in directory of script
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPT_DIR
+
+if [ ! -f "config.sh" ]; then
+    cp default_config.sh config.sh
+fi
+
 # read config
 source config.sh
 
