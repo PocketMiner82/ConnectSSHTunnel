@@ -14,7 +14,7 @@ BADVPN_UDPGW_PORT=7200
 
 
 # the credentials for the ssh server
-SERVER_USER=
+SERVER_USER=sshuser
 # base64 encoded password for the ssh server
 SERVER_PASS=
 
@@ -23,6 +23,6 @@ PROXY_DOMAIN=some.proxy.server
 # the port of the proxy server
 PROXY_PORT=8080
 # the user for an authenticated proxy
-PROXY_USER=your.user
+PROXY_USER=proxyuser
 # the base64 encoded password for the proxy
 PROXY_PASS=
