@@ -20,7 +20,7 @@ Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all t
 * Install the dependencies (OpenWRT)
   ```bash
   opkg update
-  opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass
+  opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass bash
   ```
 * Run the script once to copy the config file. Then edit `config.sh`. DO NOT edit `default_config.sh`!
 * Make sure, the certificate of the server you specified in config to connect is trusted. If you are not sure run this (replace the placeholders before!):
@@ -38,5 +38,5 @@ Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all t
   Note that the script must be run as root, so you may need to prefix the command above with `sudo`.
   If you want to start the script on boot, add this to `/etc/rc.local`, in the line before `exit`.
   ```bash
-  /bin/sh /path/to/connect_ssh_server.sh &
+  /bin/bash /path/to/connect_ssh_server.sh &
   ```

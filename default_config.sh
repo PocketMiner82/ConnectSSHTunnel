@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # these are example servers for different ssh services
 
