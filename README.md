@@ -13,9 +13,9 @@ Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all t
   git clone https://github.com/PocketMiner82/ConnectSSHTunnel.git
   cd ConnectSSHTunnel
   ```
-* Copy the correct badvpn binary or build your own. e.g. The target name MUST be `badvpn-tun2socks`. For OpenWRT (aarch64) on a Raspberry PI 4:
+* Copy the correct badvpn binary or build your own. The target name MUST be `badvpn-tun2socks`. For OpenWRT (aarch64) on a Raspberry PI 4:
   ```bash
-  cp badvpn_compiled/badvpn-tun2socks_openwrt_rpi4_aarch64 ../badvpn-tun2socks
+  cp badvpn_compiled/badvpn-tun2socks_openwrt_rpi4_aarch64 badvpn-tun2socks
   ```
 * Install the dependencies (OpenWRT)
   ```bash
