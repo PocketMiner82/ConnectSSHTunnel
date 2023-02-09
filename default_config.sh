@@ -12,7 +12,7 @@
 #SERVER_PORT=888
 #BADVPN_UDPGW_PORT=7200
 
-# VPN Jantit: https://www.vpnjantit.com/create-free-account?server=gr4&type=SSH (VPS Provider: gr1, gr2, gr3: OVH; gr4, gr5: 1&1 IONOS, gr6: myLoc)
+# VPN Jantit: https://www.vpnjantit.com/create-free-account?server=gr5&type=SSH (VPS Provider: gr1, gr2, gr3: OVH; gr4, gr5: 1&1 IONOS, gr6: myLoc)
 SERVER_DOMAIN=gr5.vpnjantit.com
 SERVER_PORT=80
 BADVPN_UDPGW_PORT=7200
