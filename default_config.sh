@@ -2,14 +2,19 @@
 
 # these are example servers for different ssh services
 
-# ServerSSH: https://serverssh.net/?q=create-ssh&filter=29
+# ServerSSH: https://serverssh.net/?q=create-ssh&filter=29 (VPS Provider: OVH)
 #SERVER_DOMAIN=ge.serverssh.net
 #SERVER_PORT=888
 #BADVPN_UDPGW_PORT=7200
 
-# JagoanSSH: https://www.jagoanssh.com/?do=create-account&filter=215
-SERVER_DOMAIN=ge.ipservers.xyz
-SERVER_PORT=888
+# JagoanSSH: https://www.jagoanssh.com/?do=create-account&filter=215 (VPS Provider: OVH)
+#SERVER_DOMAIN=ge.ipservers.xyz
+#SERVER_PORT=888
+#BADVPN_UDPGW_PORT=7200
+
+# VPN Jantit: https://www.vpnjantit.com/create-free-account?server=gr4&type=SSH (VPS Provider: gr1, gr2, gr3: OVH; gr4, gr5: 1&1 IONOS, gr6: myLoc)
+SERVER_DOMAIN=gr5.vpnjantit.com
+SERVER_PORT=80
 BADVPN_UDPGW_PORT=7200
 
 
