@@ -1,5 +1,5 @@
 # ConnectSSHTunnel
-Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all traffic trough it.
+Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all traffic through it.
 
 ## Features
 * Auto reconnect if SSH connection drops
