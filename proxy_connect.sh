@@ -18,9 +18,8 @@ fi
 # will get extracted out of route command later
 GATEWAY=
 
-# decode passwords
+# decode password
 PROXY_PASS=$(echo "$PROXY_PASS" | base64 --decode)
-SERVER_PASS=$(echo "$SERVER_PASS" | base64 --decode)
 
 # undo all changes this script did
 cleanup() {
@@ -55,8 +54,7 @@ openvpn --mktun --dev tun0
 # and configure its ip
 ifconfig tun0 10.20.0.1 netmask 255.255.255.0
 
-# use badvpn to route the traffic coming from the SOCKS Proxy, OpenSSH will start to the tun0 device
-# badvpn will also make sure, that UDP packets will get sent through the SSH tunnel
+# use badvpn to route the traffic coming from the SOCKS Proxy, that GOST will start, to the tun0 device (TCP only)
 (./badvpn-tun2socks --tundev tun0 --netif-ipaddr 10.20.0.2 --netif-netmask 255.255.255.0 --socks-server-addr 127.0.0.1:1080 &) > /dev/null
 sleep 1
 
@@ -68,9 +66,9 @@ do
 
     # get the gateway from the route command
     GATEWAY=$(route -n | grep 'UG[ \t]' | awk '{print $2}')
-    # make all traffic to the ssh server pass through the detected gateway
-    route add $SERVER_DOMAIN gw $GATEWAY metric 5
-    # the remaining traffic will go through the badvpn gateway and therefore through the ssh tunnel
+    # make all traffic to the proxy server pass through the detected gateway
+    route add $PROXY_DOMAIN gw $GATEWAY metric 5
+    # the remaining traffic will go through the badvpn gateway and therefore through the proxy
     route add default gw 10.20.0.2 metric 6
 
     echo "Starting GOST..."
