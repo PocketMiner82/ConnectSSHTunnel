@@ -1,6 +1,6 @@
 # ConnectSSHTunnel
 Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all traffic through it.<br>
-Also has simple proxy connect script to just route all traffic through the proxy (tun2http) without using SSH tunnel.
+Also has simple proxy connect script to just route all traffic through the proxy (tun2http) without using SSH tunnel and server.
 
 ## Features
 * Auto reconnect if SSH/proxy connection drops
