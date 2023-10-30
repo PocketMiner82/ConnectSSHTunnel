@@ -1,8 +1,9 @@
 # ConnectSSHTunnel
 Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all traffic through it.
+Also has simple proxy connect script to just route all traffic through the proxy (tun2http) without using SSH tunnel.
 
 ## Features
-* Auto reconnect if SSH connection drops
+* Auto reconnect if SSH/proxy connection drops
 * Auto detect gateway (router)
 * Revert changes on exit (CTRL+C)
 * authenticated HTTP Proxy support
@@ -22,8 +23,13 @@ Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all t
   opkg update
   opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass bash
   ```
+  For proxy_connect.sh additionally:
+  ```bash
+  opkg install gost
+  ```
+  This may only work on ImmortalWRT, a fork of OpenWRT.
 * Run the script once to copy the config file. Then edit `config.sh`. DO NOT edit `default_config.sh`!
-* Make sure, the certificate of the server you specified in config to connect is trusted. If you are not sure run this (replace the placeholders before!):
+* For SSH Tunnel: Make sure, the certificate of the server you specified in config to connect is trusted. If you are not sure run this (replace the placeholders before!):
   ```bash
   ssh <user>@<server_ip> -p <server_port>
   ```
@@ -35,6 +41,12 @@ Connects your PC, Raspberry PI, OpenWRT router to an SSH tunnel and routes all t
   ```bash
   ./connect_ssh_server.sh
   ```
+
+  Or for proxy_connect.sh:
+  ```bash
+  ./proxy_connect.sh
+  ```
+
   Note that the script must be run as root, so you may need to prefix the command above with `sudo`.
   If you want to start the script on boot, add this to `/etc/rc.local`, in the line before `exit`.
   ```bash
