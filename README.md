@@ -16,7 +16,7 @@ You need access to the internet to perform the installation steps.
   * OpenWRT/ImmortalWRT:
     ```bash
     opkg update
-    opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass bash
+    opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass bash git
     ```
     You also need to install [GOST](https://gost.run/en/) for the proxy_connect.sh script.<br>
     If you are using ImmortalWRT, then you can also install it by using the following command:
@@ -25,7 +25,7 @@ You need access to the internet to perform the installation steps.
     ```
   * Ubuntu:
     ```bash
-    apt install coreutils procps openvpn ncat openssh-client sshpass bash
+    apt install coreutils procps openvpn ncat openssh-client sshpass bash git
     ```
 
 * If you are using OpenWRT/ImmortalWRT, make sure that the gateway metric of your WAN interface is set to 600. You can find this setting under
