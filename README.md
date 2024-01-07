@@ -74,6 +74,7 @@ You need access to the internet to perform the installation steps.
   ```
 
 ## Example: Use a Raspberry Pi 4 as an access point that automatically routes all traffic through an HTTP proxy or an SSH tunnel
+* **Warning! This is meant to be used only in the local area network and not as a "real" router that is directly connected to the internet. Use with care!**
 * [Download](https://firmware-selector.immortalwrt.org/?target=bcm27xx%2Fbcm2711&id=rpi-4) a FACTORY image of ImmortalWRT
 * Use a tool like the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) to flash the image to a USB Stick
 * Open the cmdline.txt file in the boot partition of the stick and change the `root=/dev/mmcblk0p2` to `root=/dev/sda2`
@@ -85,7 +86,8 @@ You need access to the internet to perform the installation steps.
   ssh root@192.168.1.1
   ```
   Accept the certificate.
-* Run the following commands:
+* Run the command `passwd` to set a password for the root user (and the webinterface)
+* After that, run the following commands:
   ```bash
   # /etc/config/dhcp
   uci del dhcp.lan
@@ -114,4 +116,48 @@ You need access to the internet to perform the installation steps.
   uci del wireless.default_radio0.network
   uci commit
   ```
-* Then `shutdown now`, disconnect the power, connect the ethernet cable to a router that provides internet, reconnect the power and then run the following commands via ssh:
+* Then `shutdown now`, disconnect the power, connect the ethernet cable to a router that provides internet, reconnect the power
+* Go to `System->Administration->SSH Access` and enable `Gateway Ports`.
+* Then connect to the Pi again:
+  ```bash
+  ssh root@immortalwrt
+  ```
+* Run the following commands to get the internal wifi working in AP mode<br>
+  This is an example config for enabeling the 5 GHz Band in Germany, with the SSID "WLAN-Schnell" and the password "00000000". You should change those values!
+  ```bash
+  # /etc/config/dhcp
+  uci set dhcp.lan=dhcp
+  uci set dhcp.lan.interface='lan'
+  uci set dhcp.lan.start='100'
+  uci set dhcp.lan.limit='150'
+  uci set dhcp.lan.leasetime='12h'
+  uci set dhcp.lan.start='10'
+  uci set dhcp.lan.limit='240'
+  # /etc/config/firewall
+  uci add_list firewall.cfg02dc81.network='lan'
+  # /etc/config/network
+  uci set network.lan=interface
+  uci set network.lan.proto='static'
+  uci set network.lan.device='br-lan'
+  uci set network.lan.ipaddr='192.168.1.1'
+  uci set network.lan.netmask='255.255.255.0'
+  uci set network.lan.metric='600'
+  uci del network.cfg030f15.ports
+  uci set network.cfg030f15.bridge_empty='1'
+  uci set network.cfg030f15.mtu='1500'
+  uci set network.cfg030f15.macaddr='D8:3A:DD:13:EF:AB'
+  # /etc/config/wireless
+  uci set wireless.wifinet0=wifi-iface
+  uci set wireless.wifinet0.device='radio0'
+  uci set wireless.wifinet0.mode='ap'
+  uci set wireless.wifinet0.ssid='WLAN-Schnell'
+  uci set wireless.wifinet0.encryption='psk2'
+  uci set wireless.wifinet0.key='00000000'
+  uci set wireless.wifinet0.network='lan'
+  uci set wireless.radio0.channel='40'
+  uci set wireless.radio0.cell_density='0'
+  uci set wireless.radio0.country='DE'
+  uci commit
+  ```
+* Then `reboot now` and you should be able to connect to the wireless network.
+* Now simply follow the steps in Install and after that, the traffic of anyone connected to the wifi should be routed through your SSH tunnel/proxy!
