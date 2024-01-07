@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # these are example servers for different ssh services
+# this is only required when using connect_ssh_tunnel.sh
 
 # ServerSSH: https://serverssh.net/?q=create-ssh&filter=29 (VPS Provider: OVH)
 #SERVER_DOMAIN=ge.serverssh.net
@@ -19,15 +20,21 @@ BADVPN_UDPGW_PORT=7200
 
 
 # the credentials for the ssh server
+# this is only required when using connect_ssh_tunnel.sh
 SERVER_USER=sshuser
 # base64 encoded password for the ssh server
+# this is only required when using connect_ssh_tunnel.sh
 SERVER_PASS=
 
 # the ip/domain of the proxy server
+# this is always required
 PROXY_DOMAIN=some.proxy.server
 # the port of the proxy server
+# this is always required
 PROXY_PORT=8080
 # the user for an authenticated proxy
+# if you dont need credentials, leave this empty
 PROXY_USER=proxyuser
 # the base64 encoded password for the proxy
+# if you dont need credentials, leave this empty
 PROXY_PASS=
