@@ -16,7 +16,7 @@ You need access to the internet to perform the installation steps.
   * OpenWRT/ImmortalWRT:
     ```bash
     opkg update
-    opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass bash git
+    opkg install coreutils-base64 procps-ng-pkill coreutils-dirname openvpn ncat openssh-client sshpass bash git-http
     ```
     You also need to install [GOST](https://gost.run/en/) for the proxy_connect.sh script.<br>
     If you are using ImmortalWRT, then you can also install it by using the following command:
@@ -158,6 +158,10 @@ You need access to the internet to perform the installation steps.
   uci set wireless.radio0.cell_density='0'
   uci set wireless.radio0.country='DE'
   uci commit
+  ```
+* Use the follwing command to use the official immortal wrt repositories for installing packages later:
+  ```bash
+  sed -i -E 's@https://mirrors.vsean.net/openwrt/releases/(.*)/@https://downloads.immortalwrt.org/releases/\1/@g' /etc/opkg/distfeeds.conf
   ```
 * Then `reboot now` and you should be able to connect to the wireless network.
 * Now simply follow the steps in Install and after that, the traffic of anyone connected to the wifi should be routed through your SSH tunnel/proxy!
