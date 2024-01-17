@@ -28,10 +28,11 @@ You need access to the internet to perform the installation steps.
     apt install coreutils procps openvpn ncat openssh-client sshpass bash git
     ```
 
-* If you are using OpenWRT/ImmortalWRT, make sure that the gateway metric of your WAN interface is set to 600. You can find this setting under
+* If you are using OpenWRT/ImmortalWRT, make sure that the gateway metric of your WAN/LAN interface is set to 600. You can find this setting under
   ```
   Network->Interfaces->Edit button on your WAN interface->Advanced Settings->Use gateway metric
   ```
+  This is already configured correctly if you followed the install steps in the Example down below.
 
 * Clone this repository
   ```bash
@@ -44,7 +45,12 @@ You need access to the internet to perform the installation steps.
   cp badvpn_compiled/badvpn-tun2socks_openwrt_rpi4_aarch64 badvpn-tun2socks
   ```
 
-* Run the script once to copy the config file. Then edit `config.sh`. DO NOT edit `default_config.sh`!
+* Run the script once to copy the config file.
+  ```bash
+  ./connect_ssh_tunnel.sh
+  ```
+
+* Edit `config.sh` (`nano config.sh` if you have nano installed) DO NOT edit `default_config.sh`!
 
 * Now connect the Device to the Network where you want/have to use the ssh tunnel or proxy connect script.
 
