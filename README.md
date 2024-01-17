@@ -71,11 +71,11 @@ You need access to the internet to perform the installation steps.
   Note that the script must be run as root, so you may need to prefix the command above with `sudo`.
 * If you want to start the script on boot, add this to `/etc/rc.local`, in the line before `exit`. This may only work on OpenWRT/ImmortalWRT.
   ```bash
-  /bin/bash /path/to/connect_ssh_server.sh &
+  (/bin/bash /path/to/connect_ssh_server.sh &) > /dev/null 2>&1
   ```
   Or for proxy_connect.sh:
   ```bash
-  /bin/bash /path/to/proxy_connect.sh &
+  (/bin/bash /path/to/proxy_connect.sh &) > /dev/null 2>&1
   ```
 
 ## Example: Use a Raspberry Pi 4 as an access point that automatically routes all traffic through an HTTP proxy or an SSH tunnel
