@@ -170,4 +170,5 @@ You need access to the internet to perform the installation steps.
   opkg install nano-full
   ```
 * Then `reboot now` and you should be able to connect to the wireless network.
+* Take a look at `Network->DNS`, you might want to disable `Domain required` and change the `Local domain` to the Local Domain of your main router (e.g. for a Fritz!Box this would be fritz.box). Also disable `Rebind Protection` as that may conflict with this setup.
 * Now simply follow the steps in Install and after that, the traffic of anyone connected to the wifi should be routed through your SSH tunnel/proxy!
