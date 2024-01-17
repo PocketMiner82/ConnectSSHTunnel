@@ -33,10 +33,10 @@ cleanup() {
     then
         pkill -x badvpn-tun2sock;
     fi;
-    pkill -x ssh;
+    pkill -x gost;
 
     # remove the created routes
-    route del $SERVER_DOMAIN gw ${GATEWAY:-localhost} metric 5;
+    route del $PROXY_DOMAIN gw ${GATEWAY:-localhost} metric 5;
     route del default gw 10.20.0.2 metric 6;
 }
 
