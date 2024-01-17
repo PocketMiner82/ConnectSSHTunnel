@@ -32,7 +32,7 @@ You need access to the internet to perform the installation steps.
   ```
   Network->Interfaces->Edit button on your WAN interface->Advanced Settings->Use gateway metric
   ```
-  This is already configured correctly if you followed the install steps in the Example down below.
+  This is already configured correctly if you followed the install steps in the [Example](#example-use-a-raspberry-pi-4-as-an-access-point-that-automatically-routes-all-traffic-through-an-http-proxy-or-an-ssh-tunnel) down below.
 
 * Clone this repository
   ```bash
