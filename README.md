@@ -80,7 +80,7 @@ You need access to the internet to perform the installation steps.
 
 ## Example: Use a Raspberry Pi 4 as an access point that automatically routes all traffic through an HTTP proxy or an SSH tunnel
 * **Warning! This is meant to be used only in the local area network and not as a "real" router/gateway that is directly connected to the internet. Use with care!**
-* [Download](https://firmware-selector.immortalwrt.org/?target=bcm27xx%2Fbcm2711&id=rpi-4) a FACTORY image of ImmortalWRT
+* [Download](https://firmware-selector.immortalwrt.org/?target=bcm27xx%2Fbcm2711&id=rpi-4) a FACTORY image of ImmortalWRT. This instruction was tested on version 23.05.1.
 * Use a tool like the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) to flash the image to a USB Stick
 * Open the `cmdline.txt` file in the boot partition of the stick and change the `root=/dev/mmcblk0p2` to `root=/dev/sda2`
 * (If you run out of space later on, you may want to increase the ext4 partition (the second partition) that was created by the installer on the stick to fill the whole stick using a tool like [GParted](https://gparted.org/))
