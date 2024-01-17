@@ -46,14 +46,13 @@ You need access to the internet to perform the installation steps.
 
 * Run the script once to copy the config file. Then edit `config.sh`. DO NOT edit `default_config.sh`!
 
-* For SSH Tunnel: Make sure, the certificate of the server you specified in config to connect is trusted. If you are not sure run this (replace the placeholders before!):
+* Now connect the Device to the Network where you want/have to use the ssh tunnel or proxy connect script.
+
+* For SSH Tunnel: Make sure, the certificate of the server you specified in config to connect is trusted. If you are not sure run this script (replace the placeholders before!), which will open a normal ssh connection to the server:
   ```bash
-  ssh <user>@<server_ip> -p <server_port>
+  ./ssh_open.sh <server_port> <server_user>
   ```
-  If you are behind a proxy:
-  ```bash
-  ssh <user>@<server_ip> -p <server_port> -o "ProxyCommand=ncat --proxy-type http --proxy <proxy_ip>:<proxy_port> --proxy-auth <proxy_user>:<proxy_password> %h %p"
-  ```
+  Accept the certificate.
 
 * Finally, the script can be started:
   ```bash
@@ -74,7 +73,7 @@ You need access to the internet to perform the installation steps.
   ```
 
 ## Example: Use a Raspberry Pi 4 as an access point that automatically routes all traffic through an HTTP proxy or an SSH tunnel
-* **Warning! This is meant to be used only in the local area network and not as a "real" router that is directly connected to the internet. Use with care!**
+* **Warning! This is meant to be used only in the local area network and not as a "real" router/gateway that is directly connected to the internet. Use with care!**
 * [Download](https://firmware-selector.immortalwrt.org/?target=bcm27xx%2Fbcm2711&id=rpi-4) a FACTORY image of ImmortalWRT
 * Use a tool like the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) to flash the image to a USB Stick
 * Open the cmdline.txt file in the boot partition of the stick and change the `root=/dev/mmcblk0p2` to `root=/dev/sda2`
