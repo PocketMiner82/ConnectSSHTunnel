@@ -96,6 +96,7 @@ You need access to the internet to perform the installation steps.
   uci del firewall.cfg03dc81.network
   uci add_list firewall.cfg03dc81.network='wan'
   uci add_list firewall.cfg03dc81.network='wan6'
+  uci add_list firewall.cfg02dc81.device='tun0'
   uci add firewall rule # =cfg0e92bd
   uci set firewall.@rule[-1].name='Allow LuCI'
   uci set firewall.@rule[-1].src='wan'
@@ -162,6 +163,11 @@ You need access to the internet to perform the installation steps.
 * Use the follwing command to use the official immortal wrt repositories for installing packages later:
   ```bash
   sed -i -E 's@https://mirrors.vsean.net/openwrt/releases/(.*)/@https://downloads.immortalwrt.org/releases/\1/@g' /etc/opkg/distfeeds.conf
+  ```
+* You also might want to install nano-full to simplify editing config files later
+  ```bash
+  opkg update
+  opkg install nano-full
   ```
 * Then `reboot now` and you should be able to connect to the wireless network.
 * Now simply follow the steps in Install and after that, the traffic of anyone connected to the wifi should be routed through your SSH tunnel/proxy!
