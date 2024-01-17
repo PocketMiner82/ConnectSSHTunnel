@@ -76,9 +76,9 @@ You need access to the internet to perform the installation steps.
 * **Warning! This is meant to be used only in the local area network and not as a "real" router/gateway that is directly connected to the internet. Use with care!**
 * [Download](https://firmware-selector.immortalwrt.org/?target=bcm27xx%2Fbcm2711&id=rpi-4) a FACTORY image of ImmortalWRT
 * Use a tool like the [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) to flash the image to a USB Stick
-* Open the cmdline.txt file in the boot partition of the stick and change the `root=/dev/mmcblk0p2` to `root=/dev/sda2`
+* Open the `cmdline.txt` file in the boot partition of the stick and change the `root=/dev/mmcblk0p2` to `root=/dev/sda2`
 * (If you run out of space later on, you may want to increase the ext4 partition (the second partition) that was created by the installer on the stick to fill the whole stick using a tool like [GParted](https://gparted.org/))
-* Plug the stick in the Raspberry Pi, connect an ethernet cable to your computer and the Pi's LAN port
+* Plug the stick in the Raspberry Pi, connect an ethernet cable to your computer and the Pi's LAN port and connect power to the Raspberry Pi
 * Change your computer's settings to use a static IP instead of DHCP. Use `192.168.1.5` as your IP, `192.168.1.1` as the gateway (and DNS) and `255.255.255.0` or `/24` as the netmask.
 * Then connect to the Pi:
   ```bash
@@ -113,17 +113,17 @@ You need access to the internet to perform the installation steps.
   uci set network.wan.device='eth0'
   uci set network.wan.metric='600'
   # /etc/config/wireless
-  uci del wireless.default_radio0.network
+  uci del wireless.default_radio0
   uci commit
   ```
-* Then `shutdown now`, disconnect the power, connect the ethernet cable to a router that provides internet, reconnect the power
-* Go to `System->Administration->SSH Access` and enable `Gateway Ports`.
+* Then `poweroff now`, disconnect the power, connect the ethernet cable to a router that provides internet, reconnect the power
+* Go to `System->Administration->SSH Access` in the [webinterface](http://immortalwrt) and enable `Gateway Ports`.
 * Then connect to the Pi again:
   ```bash
   ssh root@immortalwrt
   ```
 * Run the following commands to get the internal wifi working in AP mode<br>
-  This is an example config for enabeling the 5 GHz Band in Germany, with the SSID "WLAN-Schnell" and the password "00000000". You should change those values!
+  This is an example config for enabeling the 5 GHz Band in Germany, with the SSID "MyAP" and the password "00000000". You should change those values!
   ```bash
   # /etc/config/dhcp
   uci set dhcp.lan=dhcp
@@ -150,7 +150,7 @@ You need access to the internet to perform the installation steps.
   uci set wireless.wifinet0=wifi-iface
   uci set wireless.wifinet0.device='radio0'
   uci set wireless.wifinet0.mode='ap'
-  uci set wireless.wifinet0.ssid='WLAN-Schnell'
+  uci set wireless.wifinet0.ssid='MyAP'
   uci set wireless.wifinet0.encryption='psk2'
   uci set wireless.wifinet0.key='00000000'
   uci set wireless.wifinet0.network='lan'
