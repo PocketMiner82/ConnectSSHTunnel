@@ -40,7 +40,7 @@ You need access to the internet to perform the installation steps.
   cd ConnectSSHTunnel
   ```
 
-* Copy the correct badvpn binary or build your own. The target name MUST be `badvpn-tun2socks`. The prebuilt binaries are built from [here](https://github.com/ambrop72/badvpn). For OpenWRT/ImmortalWRT (aarch64) on a Raspberry Pi 4:
+* Copy the correct badvpn binary or build your own. The target name MUST be `badvpn-tun2socks`. The prebuilt binaries are built from [here](https://github.com/ambrop72/badvpn). Also see the LICENSE_badvpn file in the directory. For OpenWRT/ImmortalWRT (aarch64) on a Raspberry Pi 4:
   ```bash
   cp badvpn_compiled/badvpn-tun2socks_openwrt_rpi4_aarch64 badvpn-tun2socks
   ```
