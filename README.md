@@ -170,7 +170,7 @@ You need access to the internet to perform the installation steps.
   ```
 * Use the follwing command to use the official immortal wrt repositories for installing packages later:
   ```bash
-  sed -i -E 's@https://mirrors.vsean.net/openwrt/releases/(.*)/@https://downloads.immortalwrt.org/releases/\1/@g' /etc/opkg/distfeeds.conf
+  sed -i -E 's@https://mirrors.vsean.net/openwrt/(.*)/@https://downloads.immortalwrt.org/\1/@g' /etc/opkg/distfeeds.conf
   ```
 * You also might want to install nano-full to simplify editing config files later
   ```bash
