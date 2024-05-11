@@ -96,6 +96,8 @@ You need access to the internet to perform the installation steps.
   ```bash
   # /etc/config/dhcp
   uci del dhcp.lan
+  # /etc/config/dropbear
+  uci set dropbear.@dropbear[0].GatewayPorts='on'
   # /etc/config/firewall
   uci del firewall.cfg02dc81.network
   uci del firewall.cfg03dc81.network
@@ -123,8 +125,7 @@ You need access to the internet to perform the installation steps.
   uci commit
   ```
 * Then `poweroff now`, disconnect the power, connect the ethernet cable to a router that provides internet, reconnect the power
-* Go to `System->Administration->SSH Access` in the [webinterface](http://immortalwrt) and enable `Gateway Ports`.
-* Then connect to the Pi again:
+* Connect to the Pi again:
   ```bash
   ssh root@immortalwrt
   ```
