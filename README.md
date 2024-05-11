@@ -173,10 +173,10 @@ You need access to the internet to perform the installation steps.
   ```bash
   sed -i -E 's@https://mirrors.vsean.net/openwrt/(.*)/@https://downloads.immortalwrt.org/\1/@g' /etc/opkg/distfeeds.conf
   ```
-* You also might want to install nano-full to simplify editing config files later
+* You also might want to install nano-full to simplify editing config files later and htop to monitor cpu usage
   ```bash
   opkg update
-  opkg install nano-full
+  opkg install nano-full htop libsensors
   ```
 * Then `reboot now` and you should be able to connect to the wireless network.
 * Now simply follow the steps in Install and after that, the traffic of anyone connected to the wifi should be routed through your SSH tunnel/proxy!
