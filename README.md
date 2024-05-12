@@ -118,7 +118,7 @@ You need access to the internet to perform the installation steps.
   uci del wireless.default_radio0
   uci commit
   
-  cat << "EOF" > /etc/uci-defaults/99-custom
+  cat << "EOF" > /etc/uci-defaults/99-connectsshtunnel
   # /etc/config/dhcp
   uci set dhcp.lan=dhcp
   uci set dhcp.lan.interface='lan'
