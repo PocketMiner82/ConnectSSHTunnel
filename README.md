@@ -12,7 +12,7 @@ Also has simple proxy connect script to just route all traffic through the proxy
 Currently, this install procedure is only tested on OpenWRT/ImmortalWRT on a Raspberry Pi 4 and Ubuntu 22.04.3 LTS.<br>
 You need access to the internet to perform the installation steps.
 
-* Install the dependencies (skip this step if you followed the [Exmaple](#example-use-a-raspberry-pi-4-as-an-access-point-that-automatically-routes-all-traffic-through-an-http-proxy-or-an-ssh-tunnel) below)
+* Install the dependencies (skip this step if you followed the [Example](#example-use-a-raspberry-pi-4-as-an-access-point-that-automatically-routes-all-traffic-through-an-http-proxy-or-an-ssh-tunnel) below)
   * OpenWRT/ImmortalWRT:
     ```bash
     opkg update
